@@ -44,6 +44,13 @@
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
 		</dependency>
+		<!-- ArchUnit -->
+		<dependency>
+			<groupId>com.tngtech.archunit</groupId>
+			<artifactId>archunit</artifactId>
+			<version>0.21.0</version>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 
 	<build>

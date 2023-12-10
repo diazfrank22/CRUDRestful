@@ -5,30 +5,33 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 //@Data
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 @ToString
 @Entity
 @Table(name="users")
 public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "user_id")
+    @Column(name = "id")
     private Long userId;
     private String name;
     private String email;
     private String password;
-   // private PhoneEntity phone;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<PhoneEntity> phones;
 
-    public UserEntity(String name, String email, String password) {
+    public UserEntity(Long userId, String name, String email, String password, List<PhoneEntity> phones) {
+        this.userId = userId;
         this.name = name;
         this.email = email;
         this.password = password;
-
+        this.phones = phones;
     }
 }
 

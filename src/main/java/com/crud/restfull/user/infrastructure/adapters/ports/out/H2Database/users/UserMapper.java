@@ -3,22 +3,32 @@ package com.crud.restfull.user.infrastructure.adapters.ports.out.H2Database.user
 import com.crud.restfull.user.domain.entities.Phones;
 import com.crud.restfull.user.domain.entities.User;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class UserMapper {
 
     public static User entityToDomain(UserEntity userEntity) {
 
-//       Phones objPhone = new Phones(userEntity.getPhone().getNumber(),
-//                                    userEntity.getPhone().getCitycode(),
-//                                    userEntity.getPhone().getContrycode());
+        List<Phones> PhonesList = userEntity.getPhones()
+                                          .stream()
+                                          .map(phone-> new Phones(phone.getPhoneId(), phone.getNumber(),phone.getCitycode(),phone.getContrycode())).collect(Collectors.toList());
 
-        return new User(userEntity.getName(), userEntity.getEmail(), userEntity.getPassword());
+        return new User(userEntity.getUserId(), userEntity.getName(), userEntity.getEmail(), userEntity.getPassword(), PhonesList);
 
     }
 
     public static UserEntity domainToEntity(User user) {
 
-        return new UserEntity( user.getName(),
+         List<PhoneEntity> getPhone = (List<PhoneEntity>) user.getPhones().stream().map(obj->user.getPhones());
+
+        return new UserEntity( user.getId(),
+                               user.getName(),
                                user.getEmail(),
-                               user.getPassword());
+                               user.getPassword(),
+                               getPhone);
     }
+
+
 }

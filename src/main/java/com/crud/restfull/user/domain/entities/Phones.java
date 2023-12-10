@@ -2,14 +2,24 @@ package com.crud.restfull.user.domain.entities;
 
 
 public class Phones {
-    private String number;
-    private String citycode;
-    private String contrycode;
+    private Long phoneId;
+    private  String number;
+    private  String citycode;
+    private  String contrycode;
 
-    public Phones(String number, String citycode, String contrycode) {
+    public Phones(Long phoneId, String number, String citycode, String contrycode) {
+        this.phoneId = phoneId;
         this.number = number;
         this.citycode = citycode;
         this.contrycode = contrycode;
+    }
+
+    public Long getPhoneId() {
+        return phoneId;
+    }
+
+    public void setPhoneId(Long phoneId) {
+        this.phoneId = phoneId;
     }
 
     public String getNumber() {

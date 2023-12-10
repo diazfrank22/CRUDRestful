@@ -1,17 +1,32 @@
 package com.crud.restfull.user.domain.entities;
 
+import java.util.List;
+
 public class User {
 
+    private Long Id;
     private String name;
     private String email;
     private String password;
-    private Phones phone;
+    private List<Phones> phones;
 
-    public User(String name, String email, String password) {
+    public User() {
+    }
+
+    public User(Long Id, String name, String email, String password, List<Phones> phones) {
+        this.Id = Id;
         this.name = name;
         this.email = email;
         this.password = password;
-        this.phone = phone;
+        this.phones = phones;
+    }
+
+    public Long getId() {
+        return Id;
+    }
+
+    public void setId(long id) {
+        Id = id;
     }
 
     public String getName() {
@@ -38,11 +53,11 @@ public class User {
         this.password = password;
     }
 
-    public Phones getPhone() {
-        return phone;
+    public List<Phones> getPhones() {
+        return phones;
     }
 
-    public void setPhone(Phones phone) {
-        this.phone = phone;
+    public void setPhones(List<Phones> phones) {
+        this.phones = phones;
     }
 }

@@ -1,5 +1,8 @@
 package com.crud.restfull.domain.entities;
 
+import lombok.Builder;
+import lombok.Data;
+
 import java.util.List;
 
 public class User {
